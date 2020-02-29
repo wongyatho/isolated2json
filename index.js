@@ -5,21 +5,6 @@ module.exports = async function(url) {
 	try {
 		let res = await fetch(url);
 		let data = await pdf(await res.buffer());
-
-		// number of pages
-		//console.log(data.numpages);
-		// number of rendered pages
-		//console.log(data.numrender);
-		// PDF info
-		//console.log(data.info);
-		// PDF metadata
-		//console.log(data.metadata); 
-		// PDF.js version
-		// check https://mozilla.github.io/pdf.js/getting_started/
-		//console.log(data.version);
-		// PDF text
-		//console.log(data.text); 
-
 		let lines = data.text.split("\n");
 		let output = [];
 		for(let i=0; i <lines.length;i++) {
@@ -36,7 +21,7 @@ module.exports = async function(url) {
 				output.push(`{
   "case_no":"${caseNo}",
   "district":"${line1[0].replace(caseNo+' ','')}",
-  "address":"${line1[1]}",
+  "address":"${line1[1].trim()}",
   "end_date":"${lines[i+2]}",
 }`);
 			}
