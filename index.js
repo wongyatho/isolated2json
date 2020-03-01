@@ -20,7 +20,7 @@ module.exports = async function(url) {
 				let caseNo = parseInt(line1[0].split(' ')[0]);
 				output.push(`{
   "case_no":"${caseNo}",
-  "district":"${line1[0].replace(caseNo+' ','')}",
+  "district":"${line1[0].substring(caseNo.toString().length).trim())}",
   "address":"${line1[1].trim()}",
   "end_date":"${lines[i+2]}",
 }`);
