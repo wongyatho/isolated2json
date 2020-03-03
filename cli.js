@@ -5,4 +5,4 @@ if (process.argv.length != 3) {
 	process.exit(1);
 }
 
-require('./index')(process.argv[2]).then(console.log);
+require('./index')(process.argv[2]).then(out => console.log(JSON.stringify(out)));
